@@ -1,8 +1,8 @@
 from itertools import zip_longest
 import streamlit as st
 from streamlit_chat import message
-from langchain_openai import ChatOpenAI  # correct import
-from langchain.schema import SystemMessage, HumanMessage, AIMessage
+from langchain_openrouter import ChatOpenRouter
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
 # --- Load API key and base URL from Streamlit secrets ---
 openai_api_key = st.secrets["OPENROUTER_API_KEY"]
@@ -24,12 +24,12 @@ if "entered_prompt" not in st.session_state:
 # st.write("API key loaded?", bool(openai_api_key))
 # st.write("Base URL:", openai_api_base)
 
-# --- Initialize ChatOpenAI with OpenRouter ---
-chat = ChatOpenAI(
-    model="mistralai/mistral-7b-instruct",  # you can change to any model supported by OpenRouter
+# --- Initialize ChatOpenRouter with OpenRouter ---
+chat = ChatOpenRouter(
+    model="openai/gpt-3.5-turbo",  # use a valid OpenRouter endpoint ID from your account
     temperature=0.5,
-    openai_api_key=openai_api_key,
-    openai_api_base=openai_api_base
+    api_key=openai_api_key,
+    base_url=openai_api_base,
 )
 
 # --- Build message history ---
@@ -61,8 +61,10 @@ Remember, your primary goal is to assist and educate students in the field of Ar
 # --- Generate AI Response ---
 def generate_response():
     zipped_messages = build_message_list()
-    ai_response = chat(zipped_messages)
-    return ai_response.content
+    # Use the LangChain chat model's `invoke` method (callable instances are
+    # not supported in this LangChain version).
+    ai_message = chat.invoke(zipped_messages)
+    return ai_message.content
 
 # --- Handle input submission ---
 def submit():
