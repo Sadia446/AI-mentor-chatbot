@@ -34,7 +34,7 @@
 
 ---
 
-## ✨ Features
+##  Features
 
 | Feature | Description |
 |:---|:---|
@@ -66,7 +66,6 @@
 ```
 cognitia/
 │
-├──  cognitia_consolidated.py      # Main application file
 ├──  requirements.txt              # Python dependencies
 ├──  README.md                     # Project documentation
 └──  .streamlit/
