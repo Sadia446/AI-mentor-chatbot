@@ -125,11 +125,7 @@ Get your free API key at  [openrouter.ai](https://openrouter.ai)
 
 ---
 
-##  How It Works
-
-```
-User Input ──► Build Message History ──► Send to Mistral-7B via OpenRouter ──► Display AI Response
-```
+##  Components
 
 | Component | Role |
 |:---|:---|
