@@ -115,7 +115,6 @@ OPENROUTER_API_KEY = "your-openrouter-api-key-here"
 OPENROUTER_API_BASE = "https://openrouter.ai/api/v1"
 ```
 
->  **Never commit `secrets.toml` to GitHub.** Add it to `.gitignore`:
 
 ```bash
 echo ".streamlit/secrets.toml" >> .gitignore
